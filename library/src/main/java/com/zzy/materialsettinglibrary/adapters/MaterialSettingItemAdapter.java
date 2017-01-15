@@ -91,8 +91,8 @@ public class MaterialSettingItemAdapter extends RecyclerView.Adapter<MaterialSet
         final MaterialSettingCompoundButtonItem item = (MaterialSettingCompoundButtonItem) data.get(position);
         CharSequence text = item.getDefText();
         int textRes = item.getDefTextRes();
-        CharSequence subText = item.getSubDefText();
-        int subTextRes = item.getSubDefTextRes();
+        CharSequence subText = item.getDefSubText();
+        int subTextRes = item.getDefSubTextRes();
         setText(holder.text,holder.subText,null,text,textRes,subText,subTextRes,null,0);
         boolean defValue = item.getDefValue();
         String key = item.getKey();

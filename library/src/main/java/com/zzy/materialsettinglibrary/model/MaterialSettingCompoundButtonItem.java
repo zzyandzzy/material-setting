@@ -7,8 +7,8 @@ package com.zzy.materialsettinglibrary.model;
 public class MaterialSettingCompoundButtonItem extends MaterialSettingItem {
     private CharSequence defText = null;
     private int defTextRes = 0;
-    private CharSequence subDefText = null;
-    private int subDefTextRes = 0;
+    private CharSequence defSubText = null;
+    private int defSubTextRes = 0;
     private String key = null;
     private boolean defValue = false;
     private CharSequence changeOnText = null;
@@ -66,8 +66,8 @@ public class MaterialSettingCompoundButtonItem extends MaterialSettingItem {
         this.itemType = builder.itemType;
         this.defText = builder.defText;
         this.defTextRes = builder.defTextRes;
-        this.subDefText = builder.subDefText;
-        this.subDefTextRes = builder.subDefTextRes;
+        this.defSubText = builder.defSubText;
+        this.defSubTextRes = builder.defSubTextRes;
         this.key = builder.key;
         this.defValue = builder.defValue;
         this.changeOnText = builder.changeOnText;
@@ -82,12 +82,12 @@ public class MaterialSettingCompoundButtonItem extends MaterialSettingItem {
     }
 
     public MaterialSettingCompoundButtonItem(int itemType,String key, boolean defValue,
-            CharSequence defText, CharSequence subDefText,CharSequence changeOnText,
+            CharSequence defText, CharSequence defSubText,CharSequence changeOnText,
             CharSequence changeOnSubText,CharSequence changeOffText,
             CharSequence changeOffSubText ,OnCheckedChangeListener onCheckedChangeListener){
         this.itemType = itemType;
         this.defText = defText;
-        this.subDefText = subDefText;
+        this.defSubText = defSubText;
         this.key = key;
         this.defValue = defValue;
         this.changeOnText = changeOnText;
@@ -97,27 +97,27 @@ public class MaterialSettingCompoundButtonItem extends MaterialSettingItem {
         this.onCheckedChangeListener = onCheckedChangeListener;
     }
 
-    public MaterialSettingCompoundButtonItem(int itemType,String key, CharSequence defText, CharSequence subDefText){
+    public MaterialSettingCompoundButtonItem(int itemType,String key, CharSequence defText, CharSequence defSubText){
         this.itemType = itemType;
         this.defText = defText;
-        this.subDefText = subDefText;
+        this.defSubText = defSubText;
         this.key = key;
     }
 
-    public MaterialSettingCompoundButtonItem(int itemType,String key, int defTextRes, int subDefTextRes){
+    public MaterialSettingCompoundButtonItem(int itemType,String key, int defTextRes, int defSubTextRes){
         this.itemType = itemType;
         this.defTextRes = defTextRes;
-        this.subDefTextRes = subDefTextRes;
+        this.defSubTextRes = defSubTextRes;
         this.key = key;
     }
 
     public MaterialSettingCompoundButtonItem(
-            int itemType,String key, boolean defValue, int defTextRes, int subDefTextRes,
+            int itemType,String key, boolean defValue, int defTextRes, int defSubTextRes,
             int changeOnTextRes,int changeOnSubTextRes,int changeOffTextRes,
             int changeOffSubTextRes,OnCheckedChangeListener onCheckedChangeListener){
         this.itemType = itemType;
         this.defTextRes = defTextRes;
-        this.subDefTextRes = subDefTextRes;
+        this.defSubTextRes = defSubTextRes;
         this.key = key;
         this.defValue = defValue;
         this.changeOnTextRes = changeOnTextRes;
@@ -150,12 +150,12 @@ public class MaterialSettingCompoundButtonItem extends MaterialSettingItem {
         return defTextRes;
     }
 
-    public CharSequence getSubDefText() {
-        return subDefText;
+    public CharSequence getDefSubText() {
+        return defSubText;
     }
 
-    public int getSubDefTextRes() {
-        return subDefTextRes;
+    public int getDefSubTextRes() {
+        return defSubTextRes;
     }
 
     public String getKey() {
@@ -170,8 +170,8 @@ public class MaterialSettingCompoundButtonItem extends MaterialSettingItem {
         private int itemType;
         private CharSequence defText = null;
         private int defTextRes = 0;
-        private CharSequence subDefText = null;
-        private int subDefTextRes = 0;
+        private CharSequence defSubText = null;
+        private int defSubTextRes = 0;
         private String key = null;
         private boolean defValue = false;
         private CharSequence changeOnText = null;
@@ -200,14 +200,14 @@ public class MaterialSettingCompoundButtonItem extends MaterialSettingItem {
             return this;
         }
 
-        public Builder subDefText(CharSequence subDefText){
-            this.subDefText = subDefText;
+        public Builder defSubText(CharSequence defSubText){
+            this.defSubText = defSubText;
             return this;
         }
 
-        public Builder subDefText(int subDefTextRes){
-            this.subDefTextRes = subDefTextRes;
-            this.subDefText = null;
+        public Builder defSubText(int defSubTextRes){
+            this.defSubTextRes = defSubTextRes;
+            this.defSubText = null;
             return this;
         }
 
