@@ -228,8 +228,8 @@ License
 [11]: https://github.com/zzyandzzy/materialsetting/raw/master/app/4.png
 [12]: https://github.com/zzyandzzy/materialsetting/raw/master/app/5.png
 [13]: https://github.com/zzyandzzy/materialsetting/blob/master/app/src/main/java/com/zzy/materalsetting/MainActivity.java
-[101]: https://jitpack.io/v/daniel-stoneuk/material-about-library.svg
-[102]: https://jitpack.io/#daniel-stoneuk/material-about-library
+[101]: https://jitpack.io/v/zzyandzzy/materialsetting.svg
+[102]: https://jitpack.io/#zzyandzzy/materialsetting
 [103]: https://img.shields.io/github/license/HeinrichReimer/material-intro.svg
 [104]: https://www.apache.org/licenses/LICENSE-2.0.html
 
