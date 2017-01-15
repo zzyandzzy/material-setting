@@ -137,7 +137,7 @@ public class MaterialSettingActionItem extends MaterialSettingItem {
             return this;
         }
 
-        public Builder textRes(int textRes){
+        public Builder text(int textRes){
             this.textRes = textRes;
             this.text = null;
             return this;
@@ -149,7 +149,7 @@ public class MaterialSettingActionItem extends MaterialSettingItem {
             return this;
         }
 
-        public Builder subTextRes(int subTextRes){
+        public Builder subText(int subTextRes){
             this.subTextRes = subTextRes;
             this.subText = null;
             return this;
@@ -160,7 +160,7 @@ public class MaterialSettingActionItem extends MaterialSettingItem {
             return this;
         }
 
-        public Builder iconRes(int iconRes){
+        public Builder icon(int iconRes){
             this.iconRes = iconRes;
             return this;
         }

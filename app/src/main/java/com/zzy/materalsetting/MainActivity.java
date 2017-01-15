@@ -25,8 +25,8 @@ public class MainActivity extends MaterialSettingActivity {
     protected MaterialSettingList getMaterialSettingList(Context context) {
         authorCardBuilder = new MaterialSettingCard.Builder()
                 .addItem(new MaterialSettingTitleItem.Builder()
-                        .textRes(R.string.app_name)
-                        .iconRes(R.mipmap.ic_launcher_red)
+                        .text(R.string.app_name)
+                        .icon(R.mipmap.ic_launcher_red)
                         .build());
         authorCardBuilder.addItem(new MaterialSettingActionItem.Builder()
                 .text("作者")
@@ -52,7 +52,7 @@ public class MainActivity extends MaterialSettingActivity {
         materialSettingActionItem = new MaterialSettingActionItem.Builder()
                 .text("标题")
                 .subText("可点击的item")
-                .iconRes(R.mipmap.ic_launcher)
+                .icon(R.mipmap.ic_launcher)
                 .setOnClickListener(new MaterialSettingActionItem.OnClickListener() {
                     @Override
                     public void onClick() {
@@ -63,10 +63,10 @@ public class MainActivity extends MaterialSettingActivity {
         settingCardBuilder.addItem(materialSettingActionItem);
         settingCardBuilder.addItem(new MaterialSettingActionItem.Builder().text("标题").build());
         settingCardBuilder.addItem(new MaterialSettingActionItem.Builder().subText("副标题").build());
-        settingCardBuilder.addItem(new MaterialSettingActionItem.Builder().iconRes(R.mipmap.ic_launcher).build());
+        settingCardBuilder.addItem(new MaterialSettingActionItem.Builder().icon(R.mipmap.ic_launcher).build());
         settingCardBuilder.addItem(new MaterialSettingActionItem.Builder()
                 .text("标题")
-                .iconRes(R.mipmap.ic_launcher).build());
+                .icon(R.mipmap.ic_launcher).build());
 
         buttonCardBuilder = new MaterialSettingCard.Builder();
         buttonCardBuilder.title("按钮");
@@ -74,8 +74,12 @@ public class MainActivity extends MaterialSettingActivity {
                 .setItemType(MaterialSettingItem.ItemType.CHECKBOX_ITEM)
                 .key("checkbox1")
                 .defValue(false)
-                .text("标题")
-                .subText("副标题")
+                .defText("标题")
+                .subDefText("副标题")
+                .changeOnText("改变标题开")
+                .changeOffText("改变标题关")
+                .changeOnSubText("改变子标题开")
+                .changeOffSubText("改变子标题关")
                 .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(String key,boolean isChanged) {
@@ -88,7 +92,7 @@ public class MainActivity extends MaterialSettingActivity {
                 .setItemType(MaterialSettingItem.ItemType.CHECKBOX_ITEM)
                 .key("checkbox2")
                 .defValue(true)
-                .text("标题")
+                .defText("标题")
                 .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(String key,boolean isChanged) {
@@ -100,7 +104,7 @@ public class MainActivity extends MaterialSettingActivity {
         buttonCardBuilder.addItem(new MaterialSettingCompoundButtonItem.Builder()
                 .key("checkbox3")
                 .defValue(true)
-                .subText("副标题")
+                .subDefText("副标题")
                 .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(String key,boolean isChanged) {
@@ -113,8 +117,8 @@ public class MainActivity extends MaterialSettingActivity {
                 .setItemType(MaterialSettingItem.ItemType.SWITCH_ITEM)
                 .key("switch1")
                 .defValue(false)
-                .text("标题")
-                .subText("副标题")
+                .defText("标题")
+                .subDefText("副标题")
                 .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(String key,boolean isChanged) {
@@ -127,7 +131,7 @@ public class MainActivity extends MaterialSettingActivity {
                 .setItemType(MaterialSettingItem.ItemType.SWITCH_ITEM)
                 .key("switch2")
                 .defValue(true)
-                .text("标题")
+                .defText("标题")
                 .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(String key,boolean isChanged) {
@@ -140,7 +144,7 @@ public class MainActivity extends MaterialSettingActivity {
                 .setItemType(MaterialSettingItem.ItemType.SWITCH_ITEM)
                 .key("switch3")
                 .defValue(true)
-                .subText("副标题")
+                .subDefText("副标题")
                 .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(String key,boolean isChanged) {
@@ -153,8 +157,8 @@ public class MainActivity extends MaterialSettingActivity {
                 .setItemType(MaterialSettingItem.ItemType.RADIOBUTTON_ITEM)
                 .key("radiobutton1")
                 .defValue(false)
-                .text("标题")
-                .subText("副标题")
+                .defText("标题")
+                .subDefText("副标题")
                 .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(String key,boolean isChanged) {

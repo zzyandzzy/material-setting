@@ -58,11 +58,13 @@ public class MaterialSettingTitleItem extends MaterialSettingItem {
 
         public MaterialSettingTitleItem.Builder text(CharSequence text){
             this.text = text;
+            this.textRes = 0;
             return this;
         }
 
-        public MaterialSettingTitleItem.Builder textRes(int textRes){
+        public MaterialSettingTitleItem.Builder text(int textRes){
             this.textRes = textRes;
+            this.text = null;
             return this;
         }
 
@@ -71,7 +73,7 @@ public class MaterialSettingTitleItem extends MaterialSettingItem {
             return this;
         }
 
-        public MaterialSettingTitleItem.Builder iconRes(int iconRes){
+        public MaterialSettingTitleItem.Builder icon(int iconRes){
             this.iconRes = iconRes;
             return this;
         }

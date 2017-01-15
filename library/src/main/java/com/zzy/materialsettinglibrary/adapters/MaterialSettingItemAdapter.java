@@ -88,30 +88,19 @@ public class MaterialSettingItemAdapter extends RecyclerView.Adapter<MaterialSet
     }
 
     private void setupCompoundButtonItem(final MaterialSettingItemViewHolder holder, int position,CompoundButton compoundButton) {
-        MaterialSettingCompoundButtonItem item = (MaterialSettingCompoundButtonItem) data.get(position);
-        CharSequence text = item.getText();
-        int textRes = item.getTextRes();
-        holder.text.setVisibility(View.VISIBLE);
-        if (text != null)
-            holder.text.setText(text);
-        else if (textRes != 0)
-            holder.text.setText(textRes);
-        else
-            holder.text.setVisibility(View.GONE);
-        CharSequence subText = item.getSubText();
-        int subTextRes = item.getSubTextRes();
-        holder.subText.setVisibility(View.VISIBLE);
-        if (subText != null)
-            holder.subText.setText(subText);
-        else if (subTextRes != 0)
-            holder.subText.setText(subTextRes);
-        else
-            holder.subText.setVisibility(View.GONE);
+        final MaterialSettingCompoundButtonItem item = (MaterialSettingCompoundButtonItem) data.get(position);
+        CharSequence text = item.getDefText();
+        int textRes = item.getDefTextRes();
+        CharSequence subText = item.getSubDefText();
+        int subTextRes = item.getSubDefTextRes();
+        setText(holder.text,holder.subText,null,text,textRes,subText,subTextRes,null,0);
         boolean defValue = item.getDefValue();
         String key = item.getKey();
         if (key == null)
             key = context.getString(R.string.app_name);
-        compoundButton.setChecked(sharedPreferences.getBoolean(key,defValue));
+        boolean isChecked = sharedPreferences.getBoolean(key,defValue);
+        compoundButton.setChecked(isChecked);
+        setButtonText(holder,item,isChecked);
         if (item.getOnCheckedChangeListener() != null){
             holder.onCheckedChangeListener = item.getOnCheckedChangeListener();
         }
@@ -121,54 +110,93 @@ public class MaterialSettingItemAdapter extends RecyclerView.Adapter<MaterialSet
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (holder.onCheckedChangeListener != null) {
                     sharedPreferences.putBoolean(finalKey,isChecked);
-                    Log.d("TAG","CompoundButton:" + finalKey
-                    );
+                    Log.d("TAG","CompoundButton:" + finalKey);
+                    setButtonText(holder,item,isChecked);
                     holder.onCheckedChangeListener.onCheckedChanged(finalKey,isChecked);
                 }
             }
         });
     }
 
+    private void setText(TextView text, TextView subText,ImageView icon,
+                         CharSequence textStr, int textRes, CharSequence subTextStr, int subTextRes,
+                         Drawable drawable,int drawableRes) {
+        if (text != null){
+            text.setVisibility(View.VISIBLE);
+            if (textStr != null)
+                text.setText(textStr);
+            else if (textRes != 0)
+                text.setText(textRes);
+            else
+                text.setVisibility(View.GONE);
+        }
+        if (subText != null){
+            subText.setVisibility(View.VISIBLE);
+            if (subTextStr != null)
+                subText.setText(subTextStr);
+            else if (subTextRes != 0)
+                subText.setText(subTextRes);
+            else
+                subText.setVisibility(View.GONE);
+        }
+        if (icon != null){
+            icon.setVisibility(View.VISIBLE);
+            if (drawable != null)
+                icon.setImageDrawable(drawable);
+            else if (drawableRes != 0)
+                icon.setImageResource(drawableRes);
+            else
+                icon.setVisibility(View.GONE);
+        }
+    }
+
+    public void setButtonText(MaterialSettingItemViewHolder holder,MaterialSettingCompoundButtonItem item,boolean isChecked){
+        if (isChecked){
+            CharSequence changeOnText = item.getChangeOnText();
+            CharSequence changeOnSubText = item.getChangeOnSubText();
+            int changeOnTextRes = item.getChangeOnTextRes();
+            int changeOnSubTextRes = item.getChangeOnSubTextRes();
+            if (changeOnText != null)
+                holder.text.setText(changeOnText);
+            else if (changeOnTextRes != 0)
+                holder.text.setText(changeOnTextRes);
+            if (changeOnSubText != null)
+                holder.subText.setText(changeOnSubText);
+            else if (changeOnSubTextRes != 0)
+                holder.subText.setText(changeOnSubTextRes);
+        }else {
+            CharSequence changeOffText = item.getChangeOffText();
+            CharSequence changeOffSubText = item.getChangeOffSubText();
+            int changeOffTextRes = item.getChangeOffTextRes();
+            int changeOffSubTextRes = item.getChangeOffSubTextRes();
+            if (changeOffText != null)
+                holder.text.setText(changeOffText);
+            else if (changeOffTextRes != 0)
+                holder.text.setText(changeOffTextRes);
+            if (changeOffSubText != null)
+                holder.subText.setText(changeOffSubText);
+            else if (changeOffSubTextRes != 0)
+                holder.subText.setText(changeOffSubTextRes);
+        }
+    }
+
     private void setupActionItem(MaterialSettingItemViewHolder holder, int position) {
         MaterialSettingActionItem item = (MaterialSettingActionItem) data.get(position);
         CharSequence text = item.getText();
         int textRes = item.getTextRes();
-        holder.text.setVisibility(View.VISIBLE);
-        if (text != null)
-            holder.text.setText(text);
-        else if (textRes != 0)
-            holder.text.setText(textRes);
-        else
-            holder.text.setVisibility(View.GONE);
         CharSequence subText = item.getSubText();
         int subTextRes = item.getSubTextRes();
-        holder.subText.setVisibility(View.VISIBLE);
-        if (subText != null)
-            holder.subText.setText(subText);
-        else if (subTextRes != 0)
-            holder.subText.setText(subTextRes);
-        else
-            holder.subText.setVisibility(View.GONE);
         holder.icon.setVisibility(View.VISIBLE);
         Drawable drawable = item.getIcon();
         int drawableRes = item.getIconRes();
-        if (drawable != null)
-            holder.icon.setImageDrawable(drawable);
-        else if (drawableRes != 0)
-            holder.icon.setImageResource(drawableRes);
-        else
-            holder.icon.setVisibility(View.GONE);
-        int paddingLeft = 0;
-        int paddingRight = 0;
-        int paddingTop = 0;
-        int paddingBottom = 0;
+        setText(holder.text,holder.subText,holder.icon,text,textRes,subText,subTextRes,drawable,drawableRes);
+        int paddingLeft = 0,paddingRight = 0,paddingTop = 0,paddingBottom = 0;
         if (Build.VERSION.SDK_INT < 21){
             paddingLeft = holder.view.getPaddingLeft();
             paddingRight = holder.view.getPaddingRight();
             paddingTop = holder.view.getPaddingTop();
             paddingBottom = holder.view.getPaddingBottom();
         }
-
         if (item.getOnClickListener() != null){
             TypedValue typedValue = new TypedValue();
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground,typedValue,true);
@@ -190,18 +218,9 @@ public class MaterialSettingItemAdapter extends RecyclerView.Adapter<MaterialSet
         MaterialSettingTitleItem item = (MaterialSettingTitleItem) data.get(position);
         CharSequence text = item.getText();
         int textRes = item.getTextRes();
-        if (text != null)
-            holder.text.setText(text);
-        else if (textRes != 0)
-            holder.text.setText(textRes);
-        else
-            holder.text.setVisibility(View.GONE);
         Drawable drawable = item.getIcon();
         int drawableRes = item.getIconRes();
-        if (drawable != null){
-            holder.icon.setImageDrawable(drawable);
-        }else if(drawableRes != 0)
-            holder.icon.setImageResource(drawableRes);
+        setText(holder.text,null,holder.icon,text,textRes,null,0,drawable,drawableRes);
     }
 
     @Override
