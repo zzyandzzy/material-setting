@@ -7,7 +7,7 @@ This project inspiration from: [material-about-library][2]
 
 Thanks!
 
-[_中文文档_][105]
+[中文文档][105]
 
 Screenshots
 --------
@@ -234,7 +234,7 @@ License
 [102]: https://jitpack.io/#zzyandzzy/materialsetting
 [103]: https://img.shields.io/github/license/HeinrichReimer/material-intro.svg
 [104]: https://www.apache.org/licenses/LICENSE-2.0.html
-[105]: https://github.com/zzyandzzy/materialsetting/README-Chinese.md
+[105]: https://github.com/zzyandzzy/materialsetting/blob/master/README-Chinese.md
 
 [materialsettingactivityjava]: https://github.com/zzyandzzy/materialsetting/blob/master/library/src/main/java/com/zzy/materialsettinglibrary/ui/MaterialSettingActivity.java
 [iconics]: https://github.com/mikepenz/Android-Iconics

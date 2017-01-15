@@ -5,7 +5,7 @@
 
 项目来源（比原来的多加了一些控件和增加启动速度，在item很多的情况下）: [material-about-library][2]
 
-[_English Document_][105]
+[English Document][105]
 
 截图
 --------
@@ -232,7 +232,7 @@ public class MainActivity extends MaterialSettingActivity {
 [102]: https://jitpack.io/#zzyandzzy/materialsetting
 [103]: https://img.shields.io/github/license/HeinrichReimer/material-intro.svg
 [104]: https://www.apache.org/licenses/LICENSE-2.0.html
-[105]: https://github.com/zzyandzzy/materialsetting/README.md
+[105]: https://github.com/zzyandzzy/materialsetting/blob/master/README.md
 
 [materialsettingactivityjava]: https://github.com/zzyandzzy/materialsetting/blob/master/library/src/main/java/com/zzy/materialsettinglibrary/ui/MaterialSettingActivity.java
 [iconics]: https://github.com/mikepenz/Android-Iconics
