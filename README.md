@@ -147,12 +147,15 @@ Planned items include "person" items which feature buttons to showcase a single 
 **ItemType**:
 
 `CHECKBOX_ITEM`
+
 ![CheckBox][10]
 
 `SWITCH_ITEM`
+
 ![CheckBox][11]
 
 `SWITCH_RADIOBUTTON_ITEM`
+
 ![RADIOBUTTON][12]
 
 be careful,RadioButton once the selected cannot be canceled!
