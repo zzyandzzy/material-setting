@@ -3,20 +3,18 @@
 [![Release][101]][102]
 [![Apache License 2.0][103]][104]
 
-This project inspiration from: [material-about-library][2]
+项目来源（比原来的多加了一些控件和增加启动速度，在item很多的情况下）: [material-about-library][2]
 
-Thanks!
+[_English Document_][105]
 
-[_中文文档_][105]
-
-Screenshots
+截图
 --------
 
-| App Screenshots | App Screenshots |
+| 截图 | 截图 |
 |:-:|:-:|:-:|:-:|
 | ![Screenshot 1][3] | ![Screenshot 1][4] |
 
-Features
+特点
 --------
 
 * Material design
@@ -49,7 +47,7 @@ Setup
 
 ### Activity
 
-Your `Activity` must extend [`MaterialSettingActivity`][materialsettingactivityjava] and be in your *style.xml*:
+在你的 `Activity` 里继承 [`MaterialSettingActivity`][materialsettingactivityjava] 和修改*style.xml*:
 ```java
 public class MainActivity extends MaterialSettingActivity {
     private MaterialSettingCard materialSettingCard;
@@ -75,7 +73,7 @@ public class MainActivity extends MaterialSettingActivity {
 }
 ```
 
-Ensure that the theme extends 'Theme.AppCompat.Light.NoActionBar', and apply primary & accent colours.
+修改style.xml 继承 'Theme.AppCompat.Light.NoActionBar'
 ```xml
     <!-- Base application theme. -->
         <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -88,7 +86,7 @@ Ensure that the theme extends 'Theme.AppCompat.Light.NoActionBar', and apply pri
 
 ### Add Cards:
 
-Start building a "card" using [`MaterialSettingCard.Builder()`][5]
+构建卡片 [`MaterialSettingCard.Builder()`][5]
 ```java
 public class MainActivity extends MaterialSettingActivity {
     private MaterialSettingCard.Builder builder;
@@ -101,7 +99,7 @@ public class MainActivity extends MaterialSettingActivity {
 }
 ```
 
-or
+或者这样
 
 ```java
 public class MainActivity extends MaterialSettingActivity {
@@ -116,21 +114,20 @@ public class MainActivity extends MaterialSettingActivity {
 ```
 ### Add Items:
 
-There are currently two types of item you can add to a card - [`MaterialSteeingTitleItem`][6] and [`MaterialSettingActionItem`][7] and [`MaterialSettingCompoundButtonItem`][8].
-Planned items include "person" items which feature buttons to showcase a single person. Feel free to submit a PR or Issue for more item ideas.
+ item有3种，[`MaterialSteeingTitleItem`][6] 和 [`MaterialSettingActionItem`][7] 和 [`MaterialSettingCompoundButtonItem`][8].
 
-- `MaterialSettingActionItem`: Standard item with text, icon and optional subtext.
-- `MaterialSteeingTitleItem`: Larger item with large icon (eg app icon) and larger text.
-- `MaterialSettingCompoundButtonItem`: CheckBox Switch and RadioButton.
+- `MaterialSettingActionItem`: 适用于大标题大图标.
+- `MaterialSteeingTitleItem`: 适用于小标题子标题小图标.
+- `MaterialSettingCompoundButtonItem`: 适用于各种选择按钮.
 
-[`MaterialSteeingTitleItem`][6] is created with [`MaterialSteeingTitleItem.Builder()`][6] and lets you specify **text** and an **icon**.
+[`MaterialSteeingTitleItem`][6] 是用 [`MaterialSteeingTitleItem.Builder()`][6] 创建的，有这几个重要的参数 **text:标题** 和 **icon:图标**.
 ```java
         builder.addItem(new MaterialSettingTitleItem.Builder()
                 .text(R.string.app_name)
                 .icon(R.mipmap.ic_launcher)
                 .build());
 ```
-[`MaterialSettingActionItem`][7] is created with [`MaterialSettingActionItem.Builder()`][7] and lets you specify **text**, **sub-text**, an **icon** and an **OnClickListener**.
+[`MaterialSettingActionItem`][7] 是用 [`MaterialSettingActionItem.Builder()`][7] 创建的，有这几个重要的参数 **text:标题**, **sub-text:子标题**, 和 **icon：图标** 和 **OnClickListener**.
 ```java
         builder.addItem(new MaterialSettingActionItem.Builder()
                 .text(R.string.app_name)
@@ -143,9 +140,10 @@ Planned items include "person" items which feature buttons to showcase a single 
                     }
                 }).build());
 ```
-[`MaterialSettingCompoundButtonItem`][8] is created with [`MaterialSettingCompoundButtonItem.Builder()`][8] and lets you specify
-**defText**, **defSubText**,**changeOnText**, **changeOnSubText**,**changeOffText**, **changeOffSubText**, an **CompoundButton** and an **OnClickListener**.
+[`MaterialSettingCompoundButtonItem`][8] 是用 [`MaterialSettingCompoundButtonItem.Builder()`][8] 创建的，有这几个重要的参数
+**defText:默认标题**, **defSubText:默认子标题**,**changeOnText:当按钮按下状态是打开时候的标题**, **changeOnSubText:当按钮按下状态是打开时候的子标题**,**changeOffText:当按钮按下状态是关闭时候的标题**, **changeOffSubText:当按钮按下状态是关闭时候的子标题**, 和 **CompoundButton:按钮** 和 **OnClickListener**.
 
+按钮类型，默认CHECKBOX_ITEM
 **ItemType**:
 
 `CHECKBOX_ITEM`
@@ -160,7 +158,7 @@ Planned items include "person" items which feature buttons to showcase a single 
 
 ![RADIOBUTTON][12]
 
-be careful,RadioButton once the selected cannot be canceled!
+这里注意RADIOBUTTON一旦选择就不能够改变了，即使你重新打开app!
 ```java
         builder.addItem(new MaterialSettingCompoundButtonItem.Builder()
                 .setItemType(MaterialSettingItem.ItemType.CHECKBOX_ITEM)
@@ -181,26 +179,26 @@ be careful,RadioButton once the selected cannot be canceled!
 ```
 
 ### Return the list:
-Create a [`MaterialSettingList`][9] using [`MaterialSettingList.Builder()`][9], passing in the cards you would like to display.
+[`MaterialSettingList`][9] 是用 [`MaterialSettingList.Builder()`][9]创建的, 它控制你的卡片的显示.
 ```java
         return new MaterialSettingList.Builder()
                         .addCard(builder.build())
                         .build();
 ```
-Check out a working example in [`MainActivity.java`][13].
+例子 [`MainActivity.java`][13].
 
-**Tip:** You can either use *Strings* / *Drawables* or *Resources* when creating `MaterialSettingItem`'s
+**提示:** 你可以用 *Strings* / *Drawables* or *Resources* 来set `MaterialSettingItem`
 
-**Tip:** Use [Android-Iconics][iconics] for icons. "Android-Iconics - Use any icon font, or vector (.svg) as drawable in your application."
+**提升:** Use [Android-Iconics][iconics] for icons. "Android-Iconics - Use any icon font, or vector (.svg) as drawable in your application."
 
-**Tip:** If you use MaterialSettingCompoundButtonItem,you need OnCheckedChangeListener,even if you don't use it
+**提示:** 如果你用了 MaterialSettingCompoundButtonItem,你必须使用 OnCheckedChangeListener,这样当用户改变了按钮的状态时，app在下一次启动能够记住按钮的状态
 
-Contributors
+贡献者
 -------
 * Daniel Stone ([@daniel-stoneuk](https://github.com/daniel-stoneuk))
 * zzyandzzy ([@zzyandzzy](https://github.com/zzyandzzy))
 
-License
+开源许可证
 -------
 
     Copyright 2016 zzyandzzy
@@ -234,7 +232,7 @@ License
 [102]: https://jitpack.io/#zzyandzzy/materialsetting
 [103]: https://img.shields.io/github/license/HeinrichReimer/material-intro.svg
 [104]: https://www.apache.org/licenses/LICENSE-2.0.html
-[105]: https://github.com/zzyandzzy/materialsetting/README-Chinese.md
+[105]: https://github.com/zzyandzzy/materialsetting/README.md
 
 [materialsettingactivityjava]: https://github.com/zzyandzzy/materialsetting/blob/master/library/src/main/java/com/zzy/materialsettinglibrary/ui/MaterialSettingActivity.java
 [iconics]: https://github.com/mikepenz/Android-Iconics
