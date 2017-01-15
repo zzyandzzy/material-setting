@@ -172,8 +172,8 @@ be careful,RadioButton once the selected cannot be canceled!
                 .changeOffSubText("changeOffSubText")
                 .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
                     @Override
-                    public void onCheckedChanged(String key, boolean isChech) {
-                        Toast.makeText(MainActivity.this,"change :" + isChech,Toast.LENGTH_SHORT).show();
+                    public void onCheckedChanged(String key, boolean isCheck) {
+                        Toast.makeText(MainActivity.this,"change :" + isCheck,Toast.LENGTH_SHORT).show();
                     }
                 }).build());
 ```
@@ -186,6 +186,7 @@ Create a [`MaterialAboutList`][9] using [`MaterialAboutList.Builder()`][9], pass
                         .build();
 ```
 Check out a working example in [`MainActivity.java`][13].
+
 **Tip:** You can either use *Strings* / *Drawables* or *Resources* when creating `MaterialAboutItem`'s
 
 **Tip:** Use [Android-Iconics][iconics] for icons. "Android-Iconics - Use any icon font, or vector (.svg) as drawable in your application."
