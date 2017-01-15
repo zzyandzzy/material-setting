@@ -189,9 +189,9 @@ public class MainActivity extends MaterialSettingActivity {
 
 **提示:** 你可以用 *Strings* / *Drawables* or *Resources* 来set `MaterialSettingItem`
 
-**提升:** Use [Android-Iconics][iconics] for icons. "Android-Iconics - Use any icon font, or vector (.svg) as drawable in your application."
+**Tip:** Use [Android-Iconics][iconics] for icons. "Android-Iconics - Use any icon font, or vector (.svg) as drawable in your application."
 
-**提示:** 如果你用了 MaterialSettingCompoundButtonItem,你必须使用 OnCheckedChangeListener,这样当用户改变了按钮的状态时，app在下一次启动能够记住按钮的状态
+**提示:** 如果你用了 `MaterialSettingCompoundButtonItem`,你必须使用 OnCheckedChangeListener,这样当用户改变了按钮的状态时，app在下一次启动能够记住按钮的状态
 
 贡献者
 -------
