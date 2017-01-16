@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.zzy.materialsettinglibrary.model.MaterialSettingActionItem;
@@ -75,14 +76,14 @@ public class MainActivity extends MaterialSettingActivity {
                 .key("checkbox1")
                 .defValue(false)
                 .defText("标题")
-                .subDefText("副标题")
+                .defSubText("副标题")
                 .changeOnText("改变标题开")
                 .changeOffText("改变标题关")
                 .changeOnSubText("改变子标题开")
                 .changeOffSubText("改变子标题关")
                 .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
                     @Override
-                    public void onCheckedChanged(String key,boolean isChanged) {
+                    public void onCheckedChanged(CompoundButton buttonView,String key, boolean isChanged) {
                         Toast.makeText(MainActivity.this,key + "按钮状态:"+ isChanged,
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -93,21 +94,16 @@ public class MainActivity extends MaterialSettingActivity {
                 .key("checkbox2")
                 .defValue(true)
                 .defText("标题")
-                .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(String key,boolean isChanged) {
-                        Toast.makeText(MainActivity.this,key + "按钮状态:"+ isChanged,
-                                Toast.LENGTH_SHORT).show();
-                    }
-                })
+                .changeOnText("xxx")
+                .changeOffText("副标题")
                 .build());
         buttonCardBuilder.addItem(new MaterialSettingCompoundButtonItem.Builder()
                 .key("checkbox3")
                 .defValue(true)
-                .subDefText("副标题")
+                .defSubText("副标题")
                 .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
                     @Override
-                    public void onCheckedChanged(String key,boolean isChanged) {
+                    public void onCheckedChanged(CompoundButton buttonView,String key, boolean isChanged) {
                         Toast.makeText(MainActivity.this,key + "按钮状态:"+ isChanged,
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -118,10 +114,10 @@ public class MainActivity extends MaterialSettingActivity {
                 .key("switch1")
                 .defValue(false)
                 .defText("标题")
-                .subDefText("副标题")
+                .defSubText("副标题")
                 .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
                     @Override
-                    public void onCheckedChanged(String key,boolean isChanged) {
+                    public void onCheckedChanged(CompoundButton buttonView,String key, boolean isChanged) {
                         Toast.makeText(MainActivity.this,key + "按钮状态:"+ isChanged,
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -134,7 +130,7 @@ public class MainActivity extends MaterialSettingActivity {
                 .defText("标题")
                 .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
                     @Override
-                    public void onCheckedChanged(String key,boolean isChanged) {
+                    public void onCheckedChanged(CompoundButton buttonView,String key, boolean isChanged) {
                         Toast.makeText(MainActivity.this,key + "按钮状态:"+ isChanged,
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -144,10 +140,10 @@ public class MainActivity extends MaterialSettingActivity {
                 .setItemType(MaterialSettingItem.ItemType.SWITCH_ITEM)
                 .key("switch3")
                 .defValue(true)
-                .subDefText("副标题")
+                .defSubText("副标题")
                 .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
                     @Override
-                    public void onCheckedChanged(String key,boolean isChanged) {
+                    public void onCheckedChanged(CompoundButton buttonView,String key, boolean isChanged) {
                         Toast.makeText(MainActivity.this,key + "按钮状态:"+ isChanged,
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -158,10 +154,10 @@ public class MainActivity extends MaterialSettingActivity {
                 .key("radiobutton1")
                 .defValue(false)
                 .defText("标题")
-                .subDefText("副标题")
+                .defSubText("副标题")
                 .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
                     @Override
-                    public void onCheckedChanged(String key,boolean isChanged) {
+                    public void onCheckedChanged(CompoundButton buttonView,String key, boolean isChanged) {
                         Toast.makeText(MainActivity.this,key + "按钮状态:"+ isChanged,
                                 Toast.LENGTH_SHORT).show();
                     }

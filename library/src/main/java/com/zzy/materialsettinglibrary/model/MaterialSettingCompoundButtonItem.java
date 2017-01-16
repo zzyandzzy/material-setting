@@ -1,5 +1,7 @@
 package com.zzy.materialsettinglibrary.model;
 
+import android.widget.CompoundButton;
+
 /**
  * Created by zzyandzzy on 2017/1/13.
  */
@@ -58,7 +60,7 @@ public class MaterialSettingCompoundButtonItem extends MaterialSettingItem {
     }
 
     public interface OnCheckedChangeListener{
-        void onCheckedChanged(String key,boolean isChanged);
+        void onCheckedChanged(CompoundButton buttonView,String key, boolean isChanged);
     }
     private OnCheckedChangeListener onCheckedChangeListener;
 
