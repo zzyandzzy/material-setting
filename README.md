@@ -159,8 +159,6 @@ Planned items include "person" items which feature buttons to showcase a single 
 `SWITCH_RADIOBUTTON_ITEM`
 
 ![RADIOBUTTON][12]
-
-be careful,RadioButton once the selected cannot be canceled!
 ```java
         builder.addItem(new MaterialSettingCompoundButtonItem.Builder()
                 .setItemType(MaterialSettingItem.ItemType.CHECKBOX_ITEM)

@@ -3,6 +3,7 @@
     <dimen name="mal_card_padding">8dp</dimen>
     <dimen name="mal_list_padding">16dp</dimen>
     <dimen name="mal_item_padding">4dp</dimen>
+    <dimen name="mal_button_padding">32dp</dimen>
     <dimen name="mal_action_image_width">32dp</dimen>
     <dimen name="mal_action_image_height">32dp</dimen>
     <dimen name="mal_checkbox_width">32dp</dimen>

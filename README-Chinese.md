@@ -158,7 +158,6 @@ public class MainActivity extends MaterialSettingActivity {
 
 ![RADIOBUTTON][12]
 
-这里注意RADIOBUTTON一旦选择就不能够改变了，即使你重新打开app!
 ```java
         builder.addItem(new MaterialSettingCompoundButtonItem.Builder()
                 .setItemType(MaterialSettingItem.ItemType.CHECKBOX_ITEM)

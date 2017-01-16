@@ -99,15 +99,12 @@ public class MaterialSettingItemAdapter extends
         boolean isChecked = sharedPreferences.getBoolean(key,defValue);
         compoundButton.setChecked(isChecked);
         holder.setButtonText(holder,item,isChecked);
+        TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.selectableItemBackground,typedValue,true);
+        holder.view.setBackgroundResource(typedValue.resourceId);
         if (item.getOnCheckedChangeListener() != null){
-            TypedValue typedValue = new TypedValue();
-            context.getTheme().resolveAttribute(R.attr.selectableItemBackground,typedValue,true);
-            holder.view.setBackgroundResource(typedValue.resourceId);
             holder.onCheckedChangeListener = item.getOnCheckedChangeListener();
         }else {
-            TypedValue typedValue = new TypedValue();
-            context.getTheme().resolveAttribute(R.attr.selectableItemBackground,typedValue,false);
-            holder.view.setBackgroundResource(typedValue.resourceId);
             holder.onCheckedChangeListener = item.getOnCheckedChangeListener();
             holder.onCheckedChangeListener = null;
         }
@@ -121,6 +118,14 @@ public class MaterialSettingItemAdapter extends
                     Log.d("TAG","CompoundButton:" + finalKey);
                     holder.onCheckedChangeListener.onCheckedChanged(compoundButton,finalKey,isChecked);
                 }
+            }
+        });
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                compoundButton.setChecked(!compoundButton.isChecked());
+                holder.setSettingSharedPreferences(item,compoundButton.isChecked());
+                holder.setButtonText(holder,item, compoundButton.isChecked());
             }
         });
     }

@@ -62,11 +62,20 @@ public class MaterialSettingItemViewHolder
                 break;
             case MaterialSettingItem.ItemType.SWITCH_ITEM:
                 aSwitch = (Switch) view.findViewById(R.id.mal_switch_item_switch);
+                compoundButton = aSwitch;
                 break;
             case MaterialSettingItem.ItemType.RADIOBUTTON_ITEM:
                 radioButton = (RadioButton) view.findViewById(R.id.mal_radiobutton_item_radiobutton);
+                compoundButton = radioButton;
                 break;
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        Log.d("TAG","onClick:");
+        if (onClickListener != null)
+            onClickListener.onClick();
     }
 
     public void setButtonText(MaterialSettingItemViewHolder holder,
@@ -141,9 +150,4 @@ public class MaterialSettingItemViewHolder
         Log.d("TAG","putBoolean:" + isChecked);
     }
 
-    @Override
-    public void onClick(View v) {
-        if (onClickListener != null)
-            onClickListener.onClick();
-    }
 }
