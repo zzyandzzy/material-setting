@@ -39,7 +39,7 @@ allprojects {
 ```
 ```gradle
 dependencies {
-    compile 'com.github.zzyandzzy:materialsetting:0.1'
+    compile 'com.github.zzyandzzy:materialsetting:0.2'
 }
 ```
 
@@ -171,11 +171,11 @@ be careful,RadioButton once the selected cannot be canceled!
                 .changeOnText("changeOnText")
                 .changeOnSubText("changeOnSubText")
                 .changeOffText("changeOffText")
-                .changeOffSubText("changeOffSubText")
+                .changeOffSubText("changeOffText")
                 .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
                     @Override
-                    public void onCheckedChanged(String key, boolean isCheck) {
-                        Toast.makeText(MainActivity.this,"change :" + isCheck,Toast.LENGTH_SHORT).show();
+                    public void onCheckedChanged(CompoundButton compoundButton, String key, boolean isCheck) {
+                        Toast.makeText(MainActivity.this,key + "change :" + isCheck,Toast.LENGTH_SHORT).show();
                     }
                 }).build());
 ```
@@ -192,8 +192,6 @@ Check out a working example in [`MainActivity.java`][13].
 **Tip:** You can either use *Strings* / *Drawables* or *Resources* when creating `MaterialSettingItem`'s
 
 **Tip:** Use [Android-Iconics][iconics] for icons. "Android-Iconics - Use any icon font, or vector (.svg) as drawable in your application."
-
-**Tip:** If you use MaterialSettingCompoundButtonItem,you need OnCheckedChangeListener,even if you don't use it
 
 Contributors
 -------

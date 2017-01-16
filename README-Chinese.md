@@ -37,7 +37,7 @@ allprojects {
 ```
 ```gradle
 dependencies {
-    compile 'com.github.zzyandzzy:materialsetting:0.1'
+    compile 'com.github.zzyandzzy:materialsetting:0.2'
 }
 ```
 
@@ -169,11 +169,11 @@ public class MainActivity extends MaterialSettingActivity {
                 .changeOnText("changeOnText")
                 .changeOnSubText("changeOnSubText")
                 .changeOffText("changeOffText")
-                .changeOffSubText("changeOffSubText")
+                .changeOffSubText("changeOffText")
                 .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
                     @Override
-                    public void onCheckedChanged(String key, boolean isCheck) {
-                        Toast.makeText(MainActivity.this,"change :" + isCheck,Toast.LENGTH_SHORT).show();
+                    public void onCheckedChanged(CompoundButton compoundButton, String key, boolean isCheck) {
+                        Toast.makeText(MainActivity.this,key + "change :" + isCheck,Toast.LENGTH_SHORT).show();
                     }
                 }).build());
 ```
@@ -187,11 +187,10 @@ public class MainActivity extends MaterialSettingActivity {
 ```
 例子 [`MainActivity.java`][13].
 
+
 **提示:** 你可以用 *Strings* / *Drawables* or *Resources* 来set `MaterialSettingItem`
 
 **Tip:** Use [Android-Iconics][iconics] for icons. "Android-Iconics - Use any icon font, or vector (.svg) as drawable in your application."
-
-**提示:** 如果你用了 `MaterialSettingCompoundButtonItem`,你必须使用 OnCheckedChangeListener,这样当用户改变了按钮的状态时，app在下一次启动能够记住按钮的状态
 
 贡献者
 -------
