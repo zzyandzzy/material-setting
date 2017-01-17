@@ -2,12 +2,15 @@ package com.zzy.materialsettinglibrary.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -29,19 +32,23 @@ public class MaterialSettingItemViewHolder
     public CompoundButton compoundButton;
     public CheckBox checkBox;
     public Switch aSwitch;
+    private LinearLayout linearLayout;
     public RadioButton radioButton;
     public TextView text;
     public TextView subText;
     public int viewType;
+    public int ButtonPosition;
     public MaterialSettingActionItem.OnClickListener onClickListener;
     public MaterialSettingCompoundButtonItem.OnCheckedChangeListener onCheckedChangeListener;
     private Context context;
     private MaterialSettingSharedPreferences settingSharedPreferences;
 
-    public MaterialSettingItemViewHolder(View itemView,int viewType) {
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public MaterialSettingItemViewHolder(View itemView, int viewType, int ButtonPosition) {
         super(itemView);
         this.view = itemView;
         this.viewType = viewType;
+        this.ButtonPosition = ButtonPosition;
         this.context = view.getContext();
         this.settingSharedPreferences = new MaterialSettingSharedPreferences(context);
         text = (TextView) view.findViewById(R.id.mal_text_item_text);
@@ -57,15 +64,55 @@ public class MaterialSettingItemViewHolder
                 text = (TextView) view.findViewById(R.id.mal_title_item_text);
                 break;
             case MaterialSettingItem.ItemType.CHECKBOX_ITEM:
-                checkBox = (CheckBox) view.findViewById(R.id.mal_checkbox_item_checkbox);
+                if (ButtonPosition != MaterialSettingItem.ButtonPosition.NULL
+                        && ButtonPosition == MaterialSettingItem.ButtonPosition.LEFT){
+                    checkBox = (CheckBox) view.findViewById(R.id.mal_checkbox_item_checkbox);
+                    checkBox.setVisibility(View.GONE);
+                    checkBox = null;
+                    checkBox = (CheckBox) view.findViewById(R.id.mal_checkbox_item_checkboxleft);
+                }else {
+                    checkBox = (CheckBox) view.findViewById(R.id.mal_checkbox_item_checkboxleft);
+                    checkBox.setVisibility(View.GONE);
+                    checkBox = null;
+                    checkBox = (CheckBox) view.findViewById(R.id.mal_checkbox_item_checkbox);
+                }
                 compoundButton = checkBox;
                 break;
             case MaterialSettingItem.ItemType.SWITCH_ITEM:
-                aSwitch = (Switch) view.findViewById(R.id.mal_switch_item_switch);
+                linearLayout = (LinearLayout) view.findViewById(R.id.mal_material_setting_text_linear);
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) linearLayout.getLayoutParams();
+                if (ButtonPosition != MaterialSettingItem.ButtonPosition.NULL
+                        && ButtonPosition == MaterialSettingItem.ButtonPosition.LEFT){
+                    aSwitch = (Switch) view.findViewById(R.id.mal_switch_item_switch);
+                    aSwitch.setVisibility(View.GONE);
+                    aSwitch = null;
+                    aSwitch = (Switch) view.findViewById(R.id.mal_switch_item_switchleft);
+                    int px = dip2px(context,1);
+                    layoutParams.setMarginStart(px);
+                    layoutParams.setMargins(px, dip2px(context,8),
+                            layoutParams.rightMargin,layoutParams.getMarginEnd());
+                }else {
+                    aSwitch = (Switch) view.findViewById(R.id.mal_switch_item_switchleft);
+                    aSwitch.setVisibility(View.GONE);
+                    aSwitch = null;
+                    aSwitch = (Switch) view.findViewById(R.id.mal_switch_item_switch);
+                }
+                linearLayout.setLayoutParams(layoutParams);
                 compoundButton = aSwitch;
                 break;
             case MaterialSettingItem.ItemType.RADIOBUTTON_ITEM:
-                radioButton = (RadioButton) view.findViewById(R.id.mal_radiobutton_item_radiobutton);
+                if (ButtonPosition != MaterialSettingItem.ButtonPosition.NULL
+                        && ButtonPosition == MaterialSettingItem.ButtonPosition.LEFT){
+                    radioButton = (RadioButton) view.findViewById(R.id.mal_radiobutton_item_radiobutton);
+                    radioButton.setVisibility(View.GONE);
+                    radioButton = null;
+                    radioButton = (RadioButton) view.findViewById(R.id.mal_radiobutton_item_radiobuttonleft);
+                }else {
+                    radioButton = (RadioButton) view.findViewById(R.id.mal_radiobutton_item_radiobuttonleft);
+                    radioButton.setVisibility(View.GONE);
+                    radioButton = null;
+                    radioButton = (RadioButton) view.findViewById(R.id.mal_radiobutton_item_radiobutton);
+                }
                 compoundButton = radioButton;
                 break;
         }
@@ -76,6 +123,11 @@ public class MaterialSettingItemViewHolder
         Log.d("TAG","onClick:");
         if (onClickListener != null)
             onClickListener.onClick();
+    }
+
+    public int dip2px(Context context,float dip){
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int)(dip * scale + 0.5f);
     }
 
     public void setButtonText(MaterialSettingItemViewHolder holder,

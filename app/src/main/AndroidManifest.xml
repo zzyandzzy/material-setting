@@ -9,7 +9,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.MaterialSetting">
             <intent-filter>
                 <action
                     android:name="android.intent.action.MAIN"/>
@@ -17,7 +17,8 @@
                     android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
+        <activity android:name=".FragmentActivity"
+            android:theme="@style/AppTheme.MaterialSetting" />
     </application>
 
 </manifest>

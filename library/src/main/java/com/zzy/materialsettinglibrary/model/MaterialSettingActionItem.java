@@ -51,6 +51,11 @@ public class MaterialSettingActionItem extends MaterialSettingItem {
         return ItemType.ACTION_ITEM;
     }
 
+    @Override
+    public int getButtonPosition() {
+        return ButtonPosition.NULL;
+    }
+
     private MaterialSettingActionItem(Builder builder){
         this.text = null;
         this.textRes = 0;

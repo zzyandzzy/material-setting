@@ -22,6 +22,7 @@ public class MaterialSettingCompoundButtonItem extends MaterialSettingItem {
     private CharSequence changeOffSubText = null;
     private int changeOffSubTextRes = 0;
     private int itemType = ItemType.CHECKBOX_ITEM;
+    private int position = ButtonPosition.RIGHT;
 
     public OnCheckedChangeListener getOnCheckedChangeListener() {
         return onCheckedChangeListener;
@@ -59,6 +60,10 @@ public class MaterialSettingCompoundButtonItem extends MaterialSettingItem {
         return changeOffSubTextRes;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
     public interface OnCheckedChangeListener{
         void onCheckedChanged(CompoundButton buttonView,String key, boolean isChanged);
     }
@@ -80,14 +85,16 @@ public class MaterialSettingCompoundButtonItem extends MaterialSettingItem {
         this.changeOnSubTextRes = builder.changeOnSubTextRes;
         this.changeOffSubText = builder.changeOffSubText;
         this.changeOffSubTextRes = builder.changeOffSubTextRes;
+        this.position = builder.position;
         this.onCheckedChangeListener = builder.onCheckedChangeListener;
     }
 
-    public MaterialSettingCompoundButtonItem(int itemType,String key, boolean defValue,
+    public MaterialSettingCompoundButtonItem(int itemType,int position,String key, boolean defValue,
             CharSequence defText, CharSequence defSubText,CharSequence changeOnText,
             CharSequence changeOnSubText,CharSequence changeOffText,
             CharSequence changeOffSubText ,OnCheckedChangeListener onCheckedChangeListener){
         this.itemType = itemType;
+        this.position = position;
         this.defText = defText;
         this.defSubText = defSubText;
         this.key = key;
@@ -114,10 +121,11 @@ public class MaterialSettingCompoundButtonItem extends MaterialSettingItem {
     }
 
     public MaterialSettingCompoundButtonItem(
-            int itemType,String key, boolean defValue, int defTextRes, int defSubTextRes,
+            int itemType,int position,String key, boolean defValue, int defTextRes, int defSubTextRes,
             int changeOnTextRes,int changeOnSubTextRes,int changeOffTextRes,
             int changeOffSubTextRes,OnCheckedChangeListener onCheckedChangeListener){
         this.itemType = itemType;
+        this.position = position;
         this.defTextRes = defTextRes;
         this.defSubTextRes = defSubTextRes;
         this.key = key;
@@ -142,6 +150,15 @@ public class MaterialSettingCompoundButtonItem extends MaterialSettingItem {
         else if (getItemType() == ItemType.RADIOBUTTON_ITEM)
             return ItemType.RADIOBUTTON_ITEM;
         else return ItemType.CHECKBOX_ITEM;
+    }
+
+    @Override
+    public int getButtonPosition() {
+        if (getPosition() == ButtonPosition.LEFT)
+            return ButtonPosition.LEFT;
+        else if (getPosition() == ButtonPosition.RIGHT)
+            return ButtonPosition.RIGHT;
+        else return ButtonPosition.NULL;
     }
 
     public CharSequence getDefText() {
@@ -169,7 +186,7 @@ public class MaterialSettingCompoundButtonItem extends MaterialSettingItem {
     }
 
     public static class Builder {
-        private int itemType;
+        private int itemType = ItemType.CHECKBOX_ITEM;;
         private CharSequence defText = null;
         private int defTextRes = 0;
         private CharSequence defSubText = null;
@@ -185,9 +202,15 @@ public class MaterialSettingCompoundButtonItem extends MaterialSettingItem {
         private CharSequence changeOffSubText = null;
         private int changeOffSubTextRes = 0;
         private OnCheckedChangeListener onCheckedChangeListener;
+        private int position = ButtonPosition.RIGHT;
 
         public Builder setItemType(int itemType){
             this.itemType = itemType;
+            return this;
+        }
+
+        public Builder setButtonPosition(int position){
+            this.position = position;
             return this;
         }
 

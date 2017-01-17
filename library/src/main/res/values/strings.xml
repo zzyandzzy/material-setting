@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">MaterialSettingLibrary</string>
-    <string name="mal_title">MaterialSetting</string>
+    <string name="app_name">MaterialSetting</string>
+    <string name="mal_title">Title</string>
+    <string name="mal_subTitle">SubTitle</string>
     <string name="mal_action_icon">Action icon</string>
 </resources>

@@ -39,7 +39,7 @@ allprojects {
 ```
 ```gradle
 dependencies {
-    compile 'com.github.zzyandzzy:materialsetting:0.2'
+    compile 'com.github.zzyandzzy:materialsetting:0.3'
 }
 ```
 
@@ -47,9 +47,9 @@ Setup
 -----
 
 
-### Activity
+### Activity&Fragment
 
-Your `Activity` must extend [`MaterialSettingActivity`][materialsettingactivityjava] and be in your *style.xml*:
+Your `Activity` must extend [`MaterialSettingActivity`][materialsettingactivityjava] and be in your *AndroidManifest.xml*:
 ```java
 public class MainActivity extends MaterialSettingActivity {
     private MaterialSettingCard materialSettingCard;
@@ -75,15 +75,49 @@ public class MainActivity extends MaterialSettingActivity {
 }
 ```
 
-Ensure that the theme extends 'Theme.AppCompat.Light.NoActionBar', and apply primary & accent colours.
+Your `Fragment` must extend [`MaterialSettingFragment`][materialsettingfragmentjava]
+```java
+public class mainFragment extends MaterialSettingFragment {
+    MaterialSettingCard.Builder settingCardBuilder;
+    MaterialSettingActionItem materialSettingActionItem;
+
+    @Override
+    protected MaterialSettingList getMaterialSettingList(Context context) {
+        settingCardBuilder = new MaterialSettingCard.Builder();
+        settingCardBuilder.title("设置");
+        materialSettingActionItem = new MaterialSettingActionItem.Builder()
+                .text("标题")
+                .subText("可点击的item")
+                .icon(R.mipmap.ic_launcher)
+                .setOnClickListener(new MaterialSettingActionItem.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        Toast.makeText(getActivity(),"你点击了:"+ materialSettingActionItem.getText().toString(),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }).build();
+        settingCardBuilder.addItem(materialSettingActionItem);
+        return new MaterialSettingList(settingCardBuilder.build());
+    }
+}
+```
+
+Ensure that the theme extends 'Theme.Mal', and apply primary & accent colours.
 ```xml
     <!-- Base application theme. -->
-        <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <style name="AppTheme.MaterialSetting" parent="Theme.Mal">
             <!-- Customize your theme here. -->
             <item name="colorPrimary">@color/colorPrimary</item>
             <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
             <item name="colorAccent">@color/colorAccent</item>
         </style>
+```
+
+`AndroidManifest.xml`
+```xml
+ <activity android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.MaterialSetting">
 ```
 
 ### Add Cards:
@@ -154,14 +188,26 @@ Planned items include "person" items which feature buttons to showcase a single 
 
 `SWITCH_ITEM`
 
-![CheckBox][11]
+![SWITCH][11]
 
 `SWITCH_RADIOBUTTON_ITEM`
 
-![RADIOBUTTON][12]
+![RadioButton][12]
+
+**ButtonPosition**:
+
+`LEFT`
+
+![Position][14]
+
+`RIGHT`
+
+![Position][15]
+
 ```java
         builder.addItem(new MaterialSettingCompoundButtonItem.Builder()
                 .setItemType(MaterialSettingItem.ItemType.CHECKBOX_ITEM)
+                .setButtonPosition(MaterialSettingItem.ButtonPosition.LEFT)
                 .key("title")
                 .defValue(false)
                 .defText("text")
@@ -226,6 +272,8 @@ License
 [11]: https://github.com/zzyandzzy/materialsetting/raw/master/app/4.png
 [12]: https://github.com/zzyandzzy/materialsetting/raw/master/app/5.png
 [13]: https://github.com/zzyandzzy/materialsetting/blob/master/app/src/main/java/com/zzy/materalsetting/MainActivity.java
+[14]: https://github.com/zzyandzzy/materialsetting/raw/master/app/6.png
+[15]: https://github.com/zzyandzzy/materialsetting/raw/master/app/7.png
 [101]: https://jitpack.io/v/zzyandzzy/materialsetting.svg
 [102]: https://jitpack.io/#zzyandzzy/materialsetting
 [103]: https://img.shields.io/github/license/HeinrichReimer/material-intro.svg
@@ -233,4 +281,5 @@ License
 [105]: https://github.com/zzyandzzy/materialsetting/blob/master/README-Chinese.md
 
 [materialsettingactivityjava]: https://github.com/zzyandzzy/materialsetting/blob/master/library/src/main/java/com/zzy/materialsettinglibrary/ui/MaterialSettingActivity.java
+[materialsettingfragmentjava]: https://github.com/zzyandzzy/materialsetting/blob/master/library/src/main/java/com/zzy/materialsettinglibrary/ui/MaterialSettingFragment.java
 [iconics]: https://github.com/mikepenz/Android-Iconics

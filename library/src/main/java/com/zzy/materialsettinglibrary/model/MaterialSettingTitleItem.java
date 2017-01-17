@@ -34,6 +34,11 @@ public class MaterialSettingTitleItem extends MaterialSettingItem {
         return ItemType.TITLE_ITEM;
     }
 
+    @Override
+    public int getButtonPosition() {
+        return ButtonPosition.NULL;
+    }
+
     public CharSequence getText() {
         return text;
     }

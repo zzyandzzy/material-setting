@@ -22,6 +22,7 @@ import com.zzy.materialsettinglibrary.ui.MaterialSettingActivity;
 public class MainActivity extends MaterialSettingActivity {
     MaterialSettingCard.Builder settingCardBuilder,authorCardBuilder,buttonCardBuilder;
     MaterialSettingActionItem materialSettingActionItem;
+
     @Override
     protected MaterialSettingList getMaterialSettingList(Context context) {
         authorCardBuilder = new MaterialSettingCard.Builder()
@@ -36,7 +37,7 @@ public class MainActivity extends MaterialSettingActivity {
                     @Override
                     public void onClick() {
                         Intent intent = new Intent(Intent.ACTION_VIEW,
-                                Uri.parse("http://github.com/zzyandzzy/materialsetting"));
+                                Uri.parse("http://github.com/zzyandzzy/material-setting"));
                         startActivity(intent);
                     }
                 }).build());
@@ -48,6 +49,16 @@ public class MainActivity extends MaterialSettingActivity {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+        authorCardBuilder.addItem(new MaterialSettingActionItem.Builder()
+                .icon(R.mipmap.ic_launcher)
+                .text("MaterialSettingFragment")
+                .setOnClickListener(new MaterialSettingActionItem.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        Intent intent = new Intent(MainActivity.this,FragmentActivity.class);
+                        startActivity(intent);
+                    }
+                }).build());
         settingCardBuilder = new MaterialSettingCard.Builder();
         settingCardBuilder.title("设置");
         materialSettingActionItem = new MaterialSettingActionItem.Builder()
@@ -73,6 +84,7 @@ public class MainActivity extends MaterialSettingActivity {
         buttonCardBuilder.title("按钮");
         buttonCardBuilder.addItem(new MaterialSettingCompoundButtonItem.Builder()
                 .setItemType(MaterialSettingItem.ItemType.CHECKBOX_ITEM)
+                .setButtonPosition(MaterialSettingItem.ButtonPosition.LEFT)
                 .key("checkbox1")
                 .defValue(false)
                 .defText("标题")
@@ -90,27 +102,8 @@ public class MainActivity extends MaterialSettingActivity {
                 })
                 .build());
         buttonCardBuilder.addItem(new MaterialSettingCompoundButtonItem.Builder()
-                .setItemType(MaterialSettingItem.ItemType.CHECKBOX_ITEM)
-                .key("checkbox2")
-                .defValue(true)
-                .defText("标题")
-                .changeOnText("xxx")
-                .changeOffText("副标题")
-                .build());
-        buttonCardBuilder.addItem(new MaterialSettingCompoundButtonItem.Builder()
-                .key("checkbox3")
-                .defValue(true)
-                .defSubText("副标题")
-                .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView,String key, boolean isChanged) {
-                        Toast.makeText(MainActivity.this,key + "按钮状态:"+ isChanged,
-                                Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .build());
-        buttonCardBuilder.addItem(new MaterialSettingCompoundButtonItem.Builder()
                 .setItemType(MaterialSettingItem.ItemType.SWITCH_ITEM)
+                .setButtonPosition(MaterialSettingItem.ButtonPosition.LEFT)
                 .key("switch1")
                 .defValue(false)
                 .defText("标题")
@@ -124,17 +117,26 @@ public class MainActivity extends MaterialSettingActivity {
                 })
                 .build());
         buttonCardBuilder.addItem(new MaterialSettingCompoundButtonItem.Builder()
+                .setItemType(MaterialSettingItem.ItemType.CHECKBOX_ITEM)
+                .setButtonPosition(MaterialSettingItem.ButtonPosition.LEFT)
+                .key("checkbox2")
+                .defValue(true)
+                .defText("标题")
+                .changeOnText("xxx")
+                .changeOffText("副标题")
+                .build());
+        buttonCardBuilder.addItem(new MaterialSettingCompoundButtonItem.Builder()
+                .key("checkbox3")
+                .defValue(true)
+                .defSubText("副标题")
+                .build());
+
+        buttonCardBuilder.addItem(new MaterialSettingCompoundButtonItem.Builder()
                 .setItemType(MaterialSettingItem.ItemType.SWITCH_ITEM)
+                .setButtonPosition(MaterialSettingItem.ButtonPosition.LEFT)
                 .key("switch2")
                 .defValue(true)
                 .defText("标题")
-                .setOnCheckedChangeListener(new MaterialSettingCompoundButtonItem.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView,String key, boolean isChanged) {
-                        Toast.makeText(MainActivity.this,key + "按钮状态:"+ isChanged,
-                                Toast.LENGTH_SHORT).show();
-                    }
-                })
                 .build());
         buttonCardBuilder.addItem(new MaterialSettingCompoundButtonItem.Builder()
                 .setItemType(MaterialSettingItem.ItemType.SWITCH_ITEM)

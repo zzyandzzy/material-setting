@@ -13,4 +13,11 @@ public abstract class MaterialSettingItem {
         public static final int SWITCH_ITEM = 3;
         public static final int RADIOBUTTON_ITEM = 4;
     }
+    public abstract int getButtonPosition();
+
+    public static final class ButtonPosition{
+        public static final int NULL = -1;
+        public static final int LEFT = 0;
+        public static final int RIGHT = 1;
+    }
 }

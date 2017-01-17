@@ -8,5 +8,8 @@
     <dimen name="mal_action_image_height">32dp</dimen>
     <dimen name="mal_checkbox_width">32dp</dimen>
     <dimen name="mal_checkbox_height">32dp</dimen>
+    <dimen name="mal_switch_width">40dp</dimen>
+    <dimen name="mal_switch_paddingLeft">1dp</dimen>
+    <dimen name="mal_switch_paddingRight">28dp</dimen>
     <dimen name="mal_title_item_image_size">48dp</dimen>
 </resources>

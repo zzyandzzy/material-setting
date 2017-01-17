@@ -29,6 +29,7 @@ public class MaterialSettingItemAdapter extends
     private ArrayList<MaterialSettingItem> data;
     private Context context;
     private MaterialSettingSharedPreferences sharedPreferences;
+    private int position;
     public MaterialSettingItemAdapter(ArrayList<MaterialSettingItem> data){
         this.data = data;
     }
@@ -60,7 +61,7 @@ public class MaterialSettingItemAdapter extends
         }
         View view = LayoutInflater.from(parent.getContext()).inflate(layoutId,parent,false);
         view.setFocusable(true);
-        return new MaterialSettingItemViewHolder(view,viewType);
+        return new MaterialSettingItemViewHolder(view,viewType,getButtonPos(position));
     }
 
     @Override
@@ -99,6 +100,7 @@ public class MaterialSettingItemAdapter extends
         boolean isChecked = sharedPreferences.getBoolean(key,defValue);
         compoundButton.setChecked(isChecked);
         holder.setButtonText(holder,item,isChecked);
+
         TypedValue typedValue = new TypedValue();
         context.getTheme().resolveAttribute(R.attr.selectableItemBackground,typedValue,true);
         holder.view.setBackgroundResource(typedValue.resourceId);
@@ -181,7 +183,12 @@ public class MaterialSettingItemAdapter extends
 
     @Override
     public int getItemViewType(int position) {
+        this.position = position;
         return data.get(position).getType();
+    }
+
+    public int getButtonPos(int position){
+        return data.get(position).getButtonPosition();
     }
 
     public int getItemType(int position){
