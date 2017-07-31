@@ -12,9 +12,9 @@ Thanks!
 Screenshots
 --------
 
-| App Screenshots | App Screenshots |
-|:-:|:-:|:-:|:-:|
-| ![Screenshot 1][3] | ![Screenshot 1][4] |
+| Screenshot | Screenshot|
+| ------------------------------ | ------------------------------ |
+| ![Demo App][3] | ![Demo App][4]|
 
 Features
 --------
